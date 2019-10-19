@@ -1,0 +1,49 @@
+﻿@model EFolio_Take10.Models.Resort
+
+@{
+    ViewBag.Title = "Room";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+
+
+<link href="~/Content/Style.css" rel="stylesheet" />
+<link href="~/Content/Resorts.css" rel="stylesheet" />
+<header class="header">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <div class="col-12 text-center">
+                <!-- <h1 class="font-weight-light">Vertically Centered Masthead Content</h1>
+                <p class="lead">A great starter layout for a landing page</p> -->
+                <div class="booking-box">
+                    <div class="head">
+                        @Html.DisplayFor(model => model.Name)
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div class="container">
+    <div class="row r-content">
+        <div class="card mb-3">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <img src="images/header.jpg" class="card-img" alt="...">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">Le Chatue</h5>
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        <p class="card-text"><small class="text-muted">Paris</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

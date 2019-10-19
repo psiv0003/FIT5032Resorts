@@ -2,74 +2,126 @@
 
 @{
     ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/AdminLayout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 
-<div>
-    <h4>Resort</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+<link href="~/Content/Style.css" rel="stylesheet" />
+<link href="~/Content/Resorts.css" rel="stylesheet" />
+<header class="header">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <div class="col-12 text-center">
+                <!-- <h1 class="font-weight-light">Vertically Centered Masthead Content</h1>
+                <p class="lead">A great starter layout for a landing page</p> -->
+                <div class="booking-box">
+                    <div class="head">
+                        @Html.DisplayFor(model => model.Name)
+                    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+                </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Address)
-        </dt>
+            </div>
+        </div>
+    </div>
+</header>
 
-        <dd>
-            @Html.DisplayFor(model => model.Address)
-        </dd>
+@foreach (var room_details in Model.Rooms)
+{
+    <div class="container">
+        <div class="row r-content">
+            <div class="card mb-3">
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                        <img src="@Url.Content("~/RoomUpload/"+  room_details.ImgURL)" class="card-img" >
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">  @Html.DisplayFor(model => room_details.Name)</h5>
+                            <p class="card-text"> @Html.DisplayFor(model => room_details.Description)</p>
+                            <p class="card-text"> AUD $ @Html.DisplayFor(model => room_details.Price) /night</p>
+                            <p class="card-text"><small class="text-muted">Room Capacity</small></p>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ImgURL)
-        </dt>
+                            <p class="card-text">   @Html.DisplayFor(model => room_details.AdultCapacity) Adults</p>
+                            <p class="card-text">  @Html.DisplayFor(model => room_details.ChildCapacity) Children</p>
 
-        <dd>
-            @Html.DisplayFor(model => model.ImgURL)
-        </dd>
+                            <button type="button" class="btn custom-btn cent"> @Html.ActionLink("Place Request", "BookRoom", "Bookings1")</button>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Rating)
-        </dt>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
 
-        <dd>
-            @Html.DisplayFor(model => model.Rating)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ResortLat)
-        </dt>
+@*<div>
+        <h4>Resort</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ResortLat)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ResortLong)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ResortLong)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+            <dt>
+                @Html.DisplayNameFor(model => model.Address)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Address)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ImgURL)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ImgURL)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Rating)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Rating)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ResortLat)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ResortLat)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ResortLong)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ResortLong)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>*@

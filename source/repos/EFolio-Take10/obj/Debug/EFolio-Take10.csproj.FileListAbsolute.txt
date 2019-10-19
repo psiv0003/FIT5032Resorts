@@ -108,7 +108,7 @@ C:\Users\Pori\source\repos\EFolio-Take10\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\Pori\source\repos\EFolio-Take10\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\Pori\source\repos\EFolio-Take10\bin\Microsoft.Owin.Security.OAuth.xml
 C:\Users\Pori\source\repos\EFolio-Take10\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\Pori\source\repos\EFolio-Take10\obj\Debug\EFolio-Take10.csprojAssemblyReference.cache
 C:\Users\Pori\source\repos\EFolio-Take10\obj\Debug\EFolio-Take10.csproj.CopyComplete
 C:\Users\Pori\source\repos\EFolio-Take10\obj\Debug\EFolio-Take10.dll
 C:\Users\Pori\source\repos\EFolio-Take10\obj\Debug\EFolio-Take10.pdb
+C:\Users\Pori\source\repos\EFolio-Take10\obj\Debug\EFolio-Take10.csprojAssemblyReference.cache

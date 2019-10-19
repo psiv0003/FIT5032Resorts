@@ -11,15 +11,23 @@ namespace EFolio_Take10.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Booking
     {
         public int Id { get; set; }
         public System.DateTime BookingDateTime { get; set; }
         public int RoomID { get; set; }
         public string GuestID { get; set; }
-        public System.DateTime CheckInDate { get; set; }
-        public System.DateTime CheckOutDate { get; set; }
+
+        [Required(ErrorMessage = "Enter the issued date.")]
+        [DataType(DataType.Date)]
+        public DateTime CheckInDate { get; set; }
+
+
+        [Required(ErrorMessage = "Enter the issued date.")]
+        [DataType(DataType.Date)]
+        public DateTime CheckOutDate { get; set; }
         public int NoOfAdults { get; set; }
         public int NoOfChildren { get; set; }
         public decimal TotalCharge { get; set; }

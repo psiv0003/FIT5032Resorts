@@ -1,4 +1,8 @@
-﻿.padding-20 {
+﻿body {
+    background-color: #863C3C;
+}
+
+.padding-20 {
     padding: 20px;
     text-align: center;
     margin: 50px;
@@ -15,3 +19,87 @@ display: none;
 .resort-image{
 width: 600px;
  }
+
+
+
+.column {
+    float: left;
+    width: 50%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.header-site {
+    background-color: #000000;
+    background-image: url(images/header.svg);
+    background-position: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.head {
+    color: #863C3C;
+    font-size: 26px;
+}
+
+.header {
+    height: 50vh;
+    min-height: 100px;
+    background-image: url('Images/header.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.cent {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.booking-box {
+    width: 63%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    background: white;
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
+    border-radius: 4px;
+    padding: 20px;
+    /* background: rgba(255,255,255,0.8); */
+}
+
+.custom-btn {
+    background-color: #863C3C;
+    color: white;
+    border-radius: 20px;
+}
+
+    .custom-btn:hover {
+        color: white;
+    }
+
+.r-content {
+    padding-top: 50px;
+}
+
+.card-title {
+    color: #863C3C;
+}
+
+a {
+    color: white !important;
+}
+
+    a:hover {
+        text-decoration: none;
+    }
+
+.card {
+    width: 100% !important;
+
+}

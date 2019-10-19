@@ -104,8 +104,8 @@
     <Property Name="BookingDateTime" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="RoomID" Type="Int32" Nullable="false" />
     <Property Name="GuestID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-    <Property Name="CheckInDate" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="CheckOutDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="CheckInDate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="CheckOutDate" Type="DateTime" Nullable="false" Precision="7" />
     <Property Name="NoOfAdults" Type="Int32" Nullable="false" />
     <Property Name="NoOfChildren" Type="Int32" Nullable="false" />
     <Property Name="TotalCharge" Type="Decimal" Nullable="false" Precision="5" Scale="2" />

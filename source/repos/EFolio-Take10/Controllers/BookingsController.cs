@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using EFolio_Take10.Models;
+using Microsoft.AspNet.Identity;
 
 namespace EFolio_Take10.Controllers
 {
@@ -43,6 +44,33 @@ namespace EFolio_Take10.Controllers
             ViewBag.RoomID = new SelectList(db.Rooms, "Id", "Name");
             return View();
         }
+        // GET: Bookings/Create
+        public ActionResult BookRoom()
+        {
+            ViewBag.GuestID = new SelectList(db.AspNetUsers, "Id", "Email");
+            ViewBag.RoomID = new SelectList(db.Rooms, "Id", "Name");
+            return View();
+        }
+
+        //Create Customer Booking Request
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult BookRoom([Bind(Include = "Id,RoomID,CheckInDate,CheckOutDate,NoOfAdults,NoOfChildren,TotalCharge,Comment")] Booking booking)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Bookings.Add(booking);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.GuestID = User.Identity.GetUserId();
+            DateTime localDate = DateTime.Now;
+            ViewBag.BookingDateTime = localDate;
+            //ViewBag.GuestID = new SelectList(db.AspNetUsers, "Id", "Email", booking.GuestID);
+            ViewBag.RoomID = new SelectList(db.Rooms, "Id", "Name", booking.RoomID);
+            return View(booking);
+        }
+
 
         // POST: Bookings/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
