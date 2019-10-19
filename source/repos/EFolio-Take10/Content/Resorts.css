@@ -1,0 +1,17 @@
+﻿.padding-20 {
+    padding: 20px;
+    text-align: center;
+    margin: 50px;
+}
+
+.heading {
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.no-display {
+display: none;
+}
+.resort-image{
+width: 600px;
+ }

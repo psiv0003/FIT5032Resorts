@@ -1,0 +1,94 @@
+﻿    @{
+    ViewBag.Title = "Home Page";
+}
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
+
+<link href="~/Content/Style.css" rel="stylesheet" />
+
+<header class="h-img ">
+    <h3>@ViewBag.Message</h3>
+
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <div class="col-12 text-center">
+                <!-- <h1 class="font-weight-light">Vertically Centered Masthead Content</h1>
+            <p class="lead">A great starter layout for a landing page</p> -->
+                <div class="booking-box">
+                    <div class="head">
+                        Where are you going?
+                    </div>
+                    <div class='col-sm-6 cent'>
+                        <div class="form-group">
+                            <div class='input-group date' >
+                                <input type='text' class="form-control"  />
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="head">
+                        Check-In Date
+                    </div>
+                    <div class='col-sm-6 cent'>
+                        <div class="form-group">
+                            @*<div class='input-group date' id='datetimepicker4'>
+                                <input type='text' class="form-control" />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-time"></span>
+                                </span>
+                            </div>*@
+                            <input class="form-control" id="datepicker-12" name="date" placeholder="MM/DD/YYY" type="text" />
+                        </div>
+                    </div>
+                    <div class="head">
+                        Check-Out Date
+                    </div>
+                    <div class='col-sm-6 cent'>
+                        <div class="form-group">
+                            <div class='input-group date' id='datetimepicker4'>
+                                <input type='text' class="form-control" />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-time"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="head">
+                        No of Adults
+                    </div>
+                    <div class='col-sm-6 cent'>
+                        <div class="form-group">
+                            <div class='input-group date' id='datetimepicker4'>
+                                <input type='text' class="form-control" />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-time"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="head">
+                        No of Children
+                    </div>
+                    <div class='col-sm-6 cent'>
+                        <div class="form-group">
+                            <div class='input-group date' id='datetimepicker4'>
+                                <input type='text' class="form-control" />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-time"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn custom-btn">Search</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</header>
+<script>
+    $(function () {
+        $("#datepicker-12").datepicker();
+        $("#datepicker-12").datepicker("setDate", "10w+1");
+    });
+</script>

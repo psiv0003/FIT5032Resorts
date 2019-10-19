@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29123.88
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFolio-Take10", "EFolio-Take10.csproj", "{88E5A010-714E-43A2-86E4-47305CC2959D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFolio-Take10.Tests", "..\EFolio-Take10.Tests\EFolio-Take10.Tests.csproj", "{C8DDB359-58BA-4A11-8700-A2B669002837}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{88E5A010-714E-43A2-86E4-47305CC2959D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88E5A010-714E-43A2-86E4-47305CC2959D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88E5A010-714E-43A2-86E4-47305CC2959D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88E5A010-714E-43A2-86E4-47305CC2959D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8DDB359-58BA-4A11-8700-A2B669002837}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8DDB359-58BA-4A11-8700-A2B669002837}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8DDB359-58BA-4A11-8700-A2B669002837}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8DDB359-58BA-4A11-8700-A2B669002837}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AC6C2F6D-4E90-4D19-B6F5-F631B8BA03E7}
+	EndGlobalSection
+EndGlobal

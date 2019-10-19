@@ -1,0 +1,65 @@
+﻿
+
+.nav-bg {
+    background-color: #863C3C;
+    color: white;
+}
+
+.column {
+    float: left;
+    width: 50%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.header-site {
+    background-color: #000000;
+    background-image: url(images/header.svg);
+    background-position: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.head {
+    color: #863C3C;
+}
+
+.h-img {
+    height: 100vh;
+    min-height: 500px;
+    background-image: url('Images/header.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.cent {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.booking-box {
+    width: 63%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    background: white;
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
+    border-radius: 25px;
+    padding: 20px;
+    background: rgba(255,255,255,0.8);
+}
+
+.custom-btn {
+    background-color: #863C3C;
+    color: white;
+}
+
+    .custom-btn:hover {
+        color: white;
+    }
