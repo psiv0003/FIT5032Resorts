@@ -18,8 +18,11 @@ namespace EFolio_Take10.Controllers
         // GET: Bookings1
         public ActionResult Index()
         {
-            var bookings = db.Bookings.Include(b => b.AspNetUser).Include(b => b.Room);
-            return View(bookings.ToList());
+            var userId = User.Identity.GetUserId();
+            var booking = db.Bookings.Where(s => s.GuestID == userId).ToList();
+
+         //   var bookings = db.Bookings.Include(b => b.AspNetUser).Include(b => b.Room);
+            return View(booking);
         }
 
         // GET: Bookings1/Details/5
@@ -34,32 +37,6 @@ namespace EFolio_Take10.Controllers
             {
                 return HttpNotFound();
             }
-            return View(booking);
-        }
-        public ActionResult BookRoom()
-        {
-            ViewBag.GuestID = new SelectList(db.AspNetUsers, "Id", "Email");
-            ViewBag.RoomID = new SelectList(db.Rooms, "Id", "Name");
-            return View();
-        }
-
-        //Create Customer Booking Request
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult BookRoom([Bind(Include = "Id,RoomID,CheckInDate,CheckOutDate,NoOfAdults,NoOfChildren,TotalCharge,Comment")] Booking booking)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Bookings.Add(booking);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.GuestID = "1 / 1 / 2019 12:00:00 AM";
-            //ViewBag.GuestID = User.Identity.GetUserId();
-            DateTime localDate = DateTime.Now;
-            ViewBag.BookingDateTime = localDate;
-            //ViewBag.GuestID = new SelectList(db.AspNetUsers, "Id", "Email", booking.GuestID);
-            ViewBag.RoomID = new SelectList(db.Rooms, "Id", "Name", booking.RoomID);
             return View(booking);
         }
 
@@ -87,6 +64,59 @@ namespace EFolio_Take10.Controllers
 
             ViewBag.GuestID = new SelectList(db.AspNetUsers, "Id", "Email", booking.GuestID);
             ViewBag.RoomID = new SelectList(db.Rooms, "Id", "Name", booking.RoomID);
+            return View(booking);
+        }
+
+        // GET: Bookings/Create
+        public ActionResult BookRoom()
+        {
+            ViewBag.GuestID = new SelectList(db.AspNetUsers, "Id", "Email");
+            ViewBag.RoomID = new SelectList(db.Rooms, "Id", "Name");
+            return View();
+        }
+
+        //Create Customer Booking Request
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult BookRoom([Bind(Include = "Id,RoomID,,NoOfAdults,NoOfChildren,TotalCharge,Comment")] Booking booking, String datepicker, String checkout)
+        {
+            if (ModelState.IsValid)
+            {
+                DateTime date = DateTime.ParseExact(datepicker, "dd/mm/yyyy", null);
+                DateTime date1 = DateTime.ParseExact(checkout, "dd/mm/yyyy", null);
+
+
+                booking.CheckInDate = date;
+                booking.CheckOutDate = date1;
+                DateTime localDate = DateTime.Now;
+                booking.BookingDateTime = localDate;
+                booking.GuestID = User.Identity.GetUserId();
+                int roomId = booking.RoomID;
+                Room room = db.Rooms.Find(roomId);
+                String diffDates = (date1 - date).TotalDays.ToString();
+
+                if (int.Parse(diffDates) == 0)
+                {
+                    //booked for one dat
+                    booking.TotalCharge = room.Price;
+                }
+                else if (int.Parse(diffDates) >= 1) {
+                    decimal days = decimal.Parse(diffDates) + 1;
+                    booking.TotalCharge = days* room.Price;
+
+                }
+
+
+                db.Bookings.Add(booking);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+ 
+          
+          
+            //ViewBag.GuestID = new SelectList(db.AspNetUsers, "Id", "Email", booking.GuestID);
+            ViewBag.RoomID = new SelectList(db.Rooms, "Id", "Name", booking.RoomID);
+
             return View(booking);
         }
 

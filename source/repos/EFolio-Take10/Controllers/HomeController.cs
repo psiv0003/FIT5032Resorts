@@ -22,7 +22,6 @@ namespace EFolio_Take10.Controllers
 
         public ActionResult Send_Email()
 
-
         {
 
             return View(new EmailSender());

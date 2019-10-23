@@ -43,10 +43,16 @@
                     @*<li class="nav-item">
             <a href="#">@Html.ActionLink("Discover", "Resorts", "Home")</a>
         </li>*@
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item">
+                            <a href="#">@Html.ActionLink("Locations", "Index", "Resorts")</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#">@Html.ActionLink("Your Bookings", "Index", "Bookings1")</a>
+                        </li>
+                    }
 
-                    <li class="nav-item">
-                        <a href="#">@Html.ActionLink("Locations", "Index", "Resorts")</a>
-                    </li>
                     <li class="nav-item">
                         <a href="#">@Html.ActionLink("Contact", "Contact", "Home")</a>
                     </li>

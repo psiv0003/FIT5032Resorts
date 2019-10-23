@@ -2,3 +2,16 @@
 .ui-state-default {
 color: black!important;
 }
+
+.cent{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.cent-align {
+text-align: center;
+}
+
+.mar-20 {
+    margin: 20px;
+}

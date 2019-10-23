@@ -43,13 +43,14 @@
     <Property Name="BookingDateTime" Type="datetime" Nullable="false" />
     <Property Name="RoomID" Type="int" Nullable="false" />
     <Property Name="GuestID" Type="nvarchar" MaxLength="128" Nullable="false" />
-    <Property Name="CheckInDate" Type="datetime2" Precision="7" Nullable="false" />
-    <Property Name="CheckOutDate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="CheckInDate" Type="date" Nullable="false" />
+    <Property Name="CheckOutDate" Type="date" Nullable="false" />
     <Property Name="NoOfAdults" Type="int" Nullable="false" />
     <Property Name="NoOfChildren" Type="int" Nullable="false" />
-    <Property Name="TotalCharge" Type="numeric" Precision="5" Scale="2" Nullable="false" />
+    <Property Name="TotalCharge" Type="numeric" Precision="12" Scale="4" Nullable="false" />
     <Property Name="Rating" Type="int" />
     <Property Name="Comment" Type="nvarchar(max)" />
+    <Property Name="status" Type="int" />
   </EntityType>
   <EntityType Name="Resorts">
     <Key>

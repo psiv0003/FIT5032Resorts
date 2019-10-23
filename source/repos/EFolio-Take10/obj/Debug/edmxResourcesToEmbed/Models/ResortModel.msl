@@ -42,6 +42,7 @@
     <EntitySetMapping Name="Bookings">
       <EntityTypeMapping TypeName="Model.Booking">
         <MappingFragment StoreEntitySet="Bookings">
+          <ScalarProperty Name="status" ColumnName="status" />
           <ScalarProperty Name="Comment" ColumnName="Comment" />
           <ScalarProperty Name="Rating" ColumnName="Rating" />
           <ScalarProperty Name="TotalCharge" ColumnName="TotalCharge" />

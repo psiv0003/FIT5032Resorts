@@ -104,15 +104,16 @@
     <Property Name="BookingDateTime" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="RoomID" Type="Int32" Nullable="false" />
     <Property Name="GuestID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-    <Property Name="CheckInDate" Type="DateTime" Nullable="false" Precision="7" />
-    <Property Name="CheckOutDate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="CheckInDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="CheckOutDate" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="NoOfAdults" Type="Int32" Nullable="false" />
     <Property Name="NoOfChildren" Type="Int32" Nullable="false" />
-    <Property Name="TotalCharge" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+    <Property Name="TotalCharge" Type="Decimal" Nullable="false" Precision="12" Scale="4" />
     <Property Name="Rating" Type="Int32" />
     <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="AspNetUser" Relationship="Model.FK__Bookings__GuestI__628FA481" FromRole="Booking" ToRole="AspNetUser" />
     <NavigationProperty Name="Room" Relationship="Model.FK__Bookings__RoomID__619B8048" FromRole="Booking" ToRole="Room" />
+    <Property Name="status" Type="Int32" />
   </EntityType>
   <EntityType Name="Resort">
     <Key>

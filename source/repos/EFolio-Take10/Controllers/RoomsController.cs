@@ -49,7 +49,7 @@ namespace EFolio_Take10.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description,AdultCapacity,ChildCapacity,ImgURL,Price,ImgName,ResortID")] Room room, HttpPostedFileBase postedFile)
+        public ActionResult Create([Bind(Include = "Id,Description,AdultCapacity,ChildCapacity,ImgURL,Price,ImgName,ResortID")] Room room,String roomName, HttpPostedFileBase postedFile)
         {
             ModelState.Clear();
             var myUniqueFileName = string.Format(@"{0}", Guid.NewGuid());
@@ -64,6 +64,10 @@ namespace EFolio_Take10.Controllers
                 string filePath = room.ImgURL + fileExtension;
                 room.ImgURL = filePath;
                 postedFile.SaveAs(serverPath + room.ImgURL);
+                int resortId = room.ResortID;
+                Resort resort = db.Resorts.Find(resortId);
+                room.Name = resort.Name + " - " + roomName;
+
 
                 db.Rooms.Add(room);
                 db.SaveChanges();

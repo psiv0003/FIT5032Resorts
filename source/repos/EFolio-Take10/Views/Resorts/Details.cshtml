@@ -29,6 +29,10 @@
     </div>
 </header>
 
+<div class="container">
+    <button type="button" class="btn custom-btn cent"> @Html.ActionLink("Place Request", "BookRoom", "Bookings1")</button>
+</div>
+
 @foreach (var room_details in Model.Rooms)
 {
     <div class="container">
@@ -48,7 +52,6 @@
                             <p class="card-text">   @Html.DisplayFor(model => room_details.AdultCapacity) Adults</p>
                             <p class="card-text">  @Html.DisplayFor(model => room_details.ChildCapacity) Children</p>
 
-                            <button type="button" class="btn custom-btn cent"> @Html.ActionLink("Place Request", "BookRoom", "Bookings1")</button>
 
                         </div>
                     </div>
