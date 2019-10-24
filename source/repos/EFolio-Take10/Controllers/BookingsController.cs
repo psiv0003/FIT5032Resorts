@@ -45,17 +45,17 @@ namespace EFolio_Take10.Controllers
             return View();
         }
         // GET: Bookings/Create
-        public ActionResult BookRoom()
+        public ActionResult BookRoom(int id)
         {
             ViewBag.GuestID = new SelectList(db.AspNetUsers, "Id", "Email");
-            ViewBag.RoomID = new SelectList(db.Rooms, "Id", "Name");
+            ViewBag.RoomID = id;
             return View();
         }
 
         //Create Customer Booking Request
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult BookRoom([Bind(Include = "Id,RoomID,CheckInDate,CheckOutDate,NoOfAdults,NoOfChildren,TotalCharge,Comment")] Booking booking)
+        public ActionResult BookRoom([Bind(Include = "Id,RoomID,CheckInDate,CheckOutDate,NoOfAdults,NoOfChildren,TotalCharge,Comment")] Booking booking, int id)
         {
             if (ModelState.IsValid)
             {

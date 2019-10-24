@@ -11,7 +11,7 @@
 
 @foreach (var item in Model)
 {
-    <div class="row r-content">
+    <div class="row r-content" style="margin-bottom: 20px; margin-top: 20px;">
 
         <div class="card width-100">
             <div class="row no-gutters">
@@ -29,12 +29,17 @@
                         <p class="card-text"><small class="text-muted">Booking Reference -  @Html.DisplayFor(modelItem => item.Id)  </small></p>
                         <p class="card-text"><small class="text-muted">Total Charge -  AUD$ @Html.DisplayFor(modelItem => item.TotalCharge)  </small></p>
 
-                        @if (item.status == 0 || item.status == null)
+                        @if (item.status == null)
                         {
                             <p class="card-text"><small class="cust-red">Booking Status -  Unconfirmed </small></p>
 
                         }
-                        else if (item.status != 0)
+                        else if (item.status == 0)
+                        {
+                            <p class="card-text"><small class="cust-red">Booking Status -  Denied  </small></p>
+
+                        }
+                        else if (item.status == 1)
                         {
                             <p class="card-text"><small class="cust-red">Booking Status -  Confirmed  </small></p>
 

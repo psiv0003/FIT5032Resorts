@@ -1,0 +1,108 @@
+﻿@model IEnumerable<EFolio_Take10.Models.Booking>
+
+@{
+    ViewBag.Title = "Ratings";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="~/Content/Style.css" rel="stylesheet" />
+<link href="~/Content/Resorts.css" rel="stylesheet" />
+
+
+<style>
+    .fa {
+  font-size: 25px;
+}
+
+.checked {
+  color: orange;
+}
+</style>
+<h2 class="heading" style="color: white;">Ratings</h2>
+
+
+@foreach (var rating in Model)
+{
+    if (rating.Rating != null || rating.Comment !=null)
+    {
+        <div class="container">
+            <div class="row r-content">
+                <div class="card mb-3">
+                    <div class="row no-gutters">
+                        <div class="col-md-4">
+                            <img src="@Url.Content("~/RoomUploads/" + rating.Room.ImgURL)" style="height: 100%; " class="card-img" alt="Resort Image">
+
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">  @Html.DisplayFor(model => rating.Room.Name) |  @Html.DisplayFor(model => rating.Room.Resort.Name) </h5>
+                                @if (rating.Rating != null)
+                                {
+                                    if (rating.Rating == 0)
+                                    {
+                                        <span class="fa fa-star "></span>
+                                        <span class="fa fa-star "></span>
+                                        <span class="fa fa-star "></span>
+                                        <span class="fa fa-star "></span>
+                                        <span class="fa fa-star"></span>
+                                    }
+                                    else if (rating.Rating == 1)
+                                    {
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star "></span>
+                                        <span class="fa fa-star "></span>
+                                        <span class="fa fa-star "></span>
+                                        <span class="fa fa-star"></span>
+                                    }
+                                    else if (rating.Rating == 2)
+                                    {
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star "></span>
+                                        <span class="fa fa-star "></span>
+                                        <span class="fa fa-star"></span>
+                                    }
+                                    else if (rating.Rating == 3)
+                                    {
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star "></span>
+                                        <span class="fa fa-star"></span>
+                                    }
+                                    else if (rating.Rating == 4)
+                                    {
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked "></span>
+                                        <span class="fa fa-star"></span>
+                                    }
+                                    else if (rating.Rating == 4)
+                                    {
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked "></span>
+                                        <span class="fa fa-star checked"></span>
+                                    }
+
+                                  
+
+                                }
+                                @if (rating.Comment != null)
+                                {
+                            <p class="card-text" style="font-style: italic;">" @Html.DisplayFor(model => rating.Comment) " </p>
+
+                                }
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+

@@ -25,6 +25,23 @@ namespace EFolio_Take10.Controllers
             return View(booking);
         }
 
+        // GET: Bookings1
+        public ActionResult Admin()
+        {
+           
+
+            //   var bookings = db.Bookings.Include(b => b.AspNetUser).Include(b => b.Room);
+            return View(db.Bookings);
+        }
+
+        // GET: Bookings1
+        public ActionResult Ratings()
+        {
+
+
+            //   var bookings = db.Bookings.Include(b => b.AspNetUser).Include(b => b.Room);
+            return View(db.Bookings);
+        }
         // GET: Bookings1/Details/5
         public ActionResult Details(int? id)
         {
@@ -68,17 +85,17 @@ namespace EFolio_Take10.Controllers
         }
 
         // GET: Bookings/Create
-        public ActionResult BookRoom()
+        public ActionResult BookRoom(int id)
         {
             ViewBag.GuestID = new SelectList(db.AspNetUsers, "Id", "Email");
-            ViewBag.RoomID = new SelectList(db.Rooms, "Id", "Name");
+            ViewBag.RoomID = id;
             return View();
         }
 
         //Create Customer Booking Request
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult BookRoom([Bind(Include = "Id,RoomID,,NoOfAdults,NoOfChildren,TotalCharge,Comment")] Booking booking, String datepicker, String checkout)
+        public ActionResult BookRoom([Bind(Include = "Id,RoomID,,NoOfAdults,NoOfChildren,TotalCharge,Comment")] Booking booking, String datepicker, String checkout, int id)
         {
             if (ModelState.IsValid)
             {
@@ -89,8 +106,10 @@ namespace EFolio_Take10.Controllers
                 booking.CheckInDate = date;
                 booking.CheckOutDate = date1;
                 DateTime localDate = DateTime.Now;
+
                 booking.BookingDateTime = localDate;
                 booking.GuestID = User.Identity.GetUserId();
+                booking.RoomID = id;
                 int roomId = booking.RoomID;
                 Room room = db.Rooms.Find(roomId);
                 String diffDates = (date1 - date).TotalDays.ToString();
@@ -111,11 +130,22 @@ namespace EFolio_Take10.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
- 
-          
-          
+
+
+            //var result = db.Rooms.ToList();
+            //List<Room> roomList = new List<Room>() ;
+            //foreach (Room room in result) {
+            //    if (room.ImgName.Equals("Active")) {
+            //        roomList.Add(room);
+            //    }
+            //}
+            //if (result != null)
+            //{
+                
+            //    ViewBag.mySkills = result.Select(N => new SelectListItem { Text = N.Name, Value = N.Id.ToString() });
+            //}
             //ViewBag.GuestID = new SelectList(db.AspNetUsers, "Id", "Email", booking.GuestID);
-            ViewBag.RoomID = new SelectList(db.Rooms, "Id", "Name", booking.RoomID);
+          //  ViewBag.RoomID = new SelectList(roomList, "Id", "Name", booking.RoomID);
 
             return View(booking);
         }
@@ -157,6 +187,37 @@ namespace EFolio_Take10.Controllers
             return View(booking);
         }
 
+        // GET: Bookings1/Edit/5
+        public ActionResult Status(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Booking booking = db.Bookings.Find(id);
+            if (booking == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.GuestID = new SelectList(db.AspNetUsers, "Id", "Email", booking.GuestID);
+            ViewBag.RoomID = new SelectList(db.Rooms, "Id", "Name", booking.RoomID);
+            return View(booking);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Status([Bind(Include = "Id,BookingDateTime,RoomID,GuestID,CheckInDate,CheckOutDate,NoOfAdults,NoOfChildren,TotalCharge,Rating,Comment, status")] Booking booking)
+        {
+            if (ModelState.IsValid)
+            {
+               
+                db.Entry(booking).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Admin");
+            }
+            //ViewBag.GuestID = new SelectList(db.AspNetUsers, "Id", "Email", booking.GuestID);
+            //ViewBag.RoomID = new SelectList(db.Rooms, "Id", "Name", booking.RoomID);
+            return View(booking);
+        }
         // GET: Bookings1/Delete/5
         public ActionResult Delete(int? id)
         {

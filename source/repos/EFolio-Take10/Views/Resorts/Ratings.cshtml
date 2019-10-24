@@ -1,0 +1,124 @@
+﻿@model EFolio_Take10.Models.Room
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+@foreach (var item in Model)
+{
+    if (room_details.ImgName.Equals("Active"))
+    {
+        <div class="container">
+            <div class="row r-content">
+                <div class="card mb-3">
+                    <div class="row no-gutters">
+                        <div class="col-md-4">
+                            <img src="@Url.Content("~/RoomUploads/" + room_details.ImgURL)" style="height: 100%; " class="card-img" alt="Resort Image">
+
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">  @Html.DisplayFor(model => room_details.Name)</h5>
+                                <p class="card-text"> @Html.DisplayFor(model => room_details.Description)</p>
+                                <p class="card-text"> AUD $ @Html.DisplayFor(model => room_details.Price) /night</p>
+                                <p class="card-text"><small class="text-muted">Room Capacity</small></p>
+
+                                <p class="card-text">   @Html.DisplayFor(model => room_details.AdultCapacity) Adults</p>
+                                <p class="card-text">  @Html.DisplayFor(model => room_details.ChildCapacity) Children</p>
+                                @if (User.Identity.IsAuthenticated)
+                                {
+
+                                    <button type="button" style="margin-bottom: 20px;" class="btn custom-btn cent"> @Html.ActionLink("Book Room", "BookRoom", "Bookings1", new { id = room_details.Id }, null)</button>
+
+                                }
+                                <button type="button" class="btn custom-btn cent"> @Html.ActionLink("View Ratings", "Ratings", "Rooms", new { id = room_details.Id }, null)</button>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+
+<div>
+    <h4>Room</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            Status
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImgName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AdultCapacity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AdultCapacity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChildCapacity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChildCapacity)
+        </dd>
+
+        @*<dt>
+                @Html.DisplayNameFor(model => model.ImgURL)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ImgURL)
+            </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Resort.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Resort.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <button type="button" class="btn custom-btn cent btn-spacing margin-10">   @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) </button>
+    <button type="button" class="btn custom-btn cent btn-spacing margin-10">   @Html.ActionLink("Back to List", "Index") </button>
+
+
+</p>

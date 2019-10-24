@@ -11,6 +11,12 @@
 <link href="~/Content/Style.css" rel="stylesheet" />
 <link href="~/Content/Resorts.css" rel="stylesheet" />
 
+<style>
+    .mapboxgl-ctrl-geocoder--suggestion-title, .mapboxgl-ctrl-geocoder--suggestion-address {
+    color: #863C3C;
+    }
+      
+</style>
 <header class="header">
     <div class="container h-100">
         <div class="row h-100 align-items-center">
@@ -31,95 +37,33 @@
 
 @foreach (var item in Model)
 {
-   <div class="row r-content">
+    if (item.ImgName.Equals("Active"))
+    {
+        <div class="row r-content">
 
-        <div class="card mb-3 coordinates">
-            <div class="row no-gutters">
-                <div class="col-md-4">
-                    <img src="@Url.Content("~/Upload/"+ item.ImgURL)" style="height: 100%; " class="card-img" alt="Resort Image">
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title description"> @Html.DisplayFor(modelItem => item.Name)</h5>
-                        <p class="card-text"> @Html.DisplayFor(modelItem => item.Description)</p>
-                        <p class="card-text"><small class="text-muted"> @Html.DisplayFor(modelItem => item.Address)</small></p>
-                        <button type="button" class="btn custom-btn cent"> @Html.ActionLink("View Resort Details", "Details", new { id = item.Id })</button>
-                        <p class="latitude no-display "> @Html.DisplayFor(modelItem => item.ResortLat) </p>
-                        <p class="longitude no-display "> @Html.DisplayFor(modelItem => item.ResortLong) </p>
+            <div class="card mb-3 coordinates">
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                        <img src="@Url.Content("~/Upload/"+ item.ImgURL)" style="height: 100%; " class="card-img" alt="Resort Image">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title description"> @Html.DisplayFor(modelItem => item.Name)</h5>
+                            <p class="card-text"> @Html.DisplayFor(modelItem => item.Description)</p>
+                            <p class="card-text"><small class="text-muted"> @Html.DisplayFor(modelItem => item.Address)</small></p>
+                            <button type="button" class="btn custom-btn cent"> @Html.ActionLink("View Resort Details", "Details", new { id = item.Id })</button>
+                            <p class="latitude no-display "> @Html.DisplayFor(modelItem => item.ResortLat) </p>
+                            <p class="longitude no-display "> @Html.DisplayFor(modelItem => item.ResortLong) </p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-    </div>
+        </div>
+    }
+
 }
 
-@*<table class="table">
-        <thead>
-
-             <tr>
-                 <th>
-                     @Html.DisplayNameFor(model => model.Name)
-                 </th>
-                 <th>
-                     @Html.DisplayNameFor(model => model.Description)
-                 </th>
-                 <th>
-                     @Html.DisplayNameFor(model => model.Address)
-                 </th>
-                 <th>
-                     @Html.DisplayNameFor(model => model.ImgURL)
-                 </th>
-                 <th>
-                     @Html.DisplayNameFor(model => model.Rating)
-                 </th>
-                 <th>
-                     @Html.DisplayNameFor(model => model.ResortLat)
-                 </th>
-                 <th>
-                     @Html.DisplayNameFor(model => model.ResortLong)
-                 </th>
-                 <th></th>
-             </tr>
-         </thead>
-
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr class="coordinates">
-                <td class="description">
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Address)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ImgURL)*
-                    <img class="img-thumbnail" src="@Url.Content("~/Upload/"+ item.ImgURL)" />
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ImgURL)
-                    </td>
-                    <td class="latitude">
-                        @Html.DisplayFor(modelItem => item.ResortLat)
-                    </td>
-                    <td class="longitude">
-                        @Html.DisplayFor(modelItem => item.ResortLong)
-                    </td>
-                    <td>
-
-                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                    </td>
-                    </tr>
-                    }
-                    </tbody>
-
-                    </table>*@
 
 
 <div id="map" style="height:300px"></div>
@@ -128,11 +72,5 @@
     @Scripts.Render("~/bundles/mapbox")
     @Scripts.Render("~/Scripts/DataTables/jquery.dataTables.js")
     @Scripts.Render("~/Scripts/DataTables/dataTables.bootstrap.js")
-    <script>
-                                                                                    //$(document).ready(function () {
-                                                                                    //    $('.table').DataTable();
-                                                                                    //});
-    </script>
+ 
 }
-<link href="~/Content/DataTables/css/dataTables.bootstrap.min.css"
-      rel="stylesheet" />

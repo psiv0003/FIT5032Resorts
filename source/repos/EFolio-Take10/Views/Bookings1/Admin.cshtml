@@ -1,0 +1,123 @@
+﻿@model IEnumerable<EFolio_Take10.Models.Booking>
+
+@{
+    ViewBag.Title = "Admin";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<link href="~/Content/Style.css" rel="stylesheet" />
+
+
+<h2 class="heading">Bookings</h2>
+
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Booking Date
+            </th>
+            <th>
+                Room Name
+            </th>
+            <th>
+                Resort Name
+            </th>
+            <th>
+                Check-In Date
+            </th>
+            <th>
+                Check-Out Date
+            </th>
+
+            <th>
+                Total Charge
+            </th>
+
+            <th>
+                Booking Status
+            </th>
+            <th>
+                User
+            </th>
+
+
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookingDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Room.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Room.Resort.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CheckInDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CheckOutDate)
+                </td>
+
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalCharge)
+                </td>
+
+                <td>
+                    @if (item.status == null)
+                    {
+                        <p>Unconfirmed</p>
+                    }
+                    else if (item.status == 1)
+                    {
+                        <p>Approved</p>
+                    }
+                    else if (item.status == 0)
+                    {
+                        <p>Denied</p>
+                    }
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+                </td>
+
+                <td>
+                    <button type="button" class="btn custom-btn cent btn-spacing margin-10">   @Html.ActionLink("Update Status", "Status", new { id = item.Id }) </button>
+                    <button type="button" class="btn custom-btn cent btn-spacing margin-10">    @Html.ActionLink("Details", "Details", new { id = item.Id }) </button>
+                    <button type="button" class="btn custom-btn cent btn-spacing margin-10">    @Html.ActionLink("Delete", "Delete", new { id = item.Id }) </button>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+
+
+</table>
+@section Scripts {
+    @Scripts.Render("~/Scripts/DataTables/jquery.dataTables.js")
+    @Scripts.Render("~/Scripts/DataTables/dataTables.bootstrap.js")
+    @Scripts.Render("~/Scripts/DataTables/dataTables.responsive.js")
+    <script>
+        $(document).ready(function () {
+            $('.table').DataTable({
+                responsive: true
+            });
+        });
+    </script>
+}
+<link href="~/Content/DataTables/css/dataTables.bootstrap.min.css"
+      rel="stylesheet" />
+<link href="~/Content/DataTables/css/responsive.dataTables.css" rel="stylesheet" />

@@ -37,6 +37,21 @@ namespace EFolio_Take10.Controllers
             return View(room);
         }
 
+        // GET: Ratings
+        public ActionResult Ratings(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Room room = db.Rooms.Find(id);
+            if (room == null)
+            {
+                return HttpNotFound();
+            }
+            return View(room);
+        }
+
         // GET: Rooms/Create
         public ActionResult Create()
         {
@@ -66,7 +81,7 @@ namespace EFolio_Take10.Controllers
                 postedFile.SaveAs(serverPath + room.ImgURL);
                 int resortId = room.ResortID;
                 Resort resort = db.Resorts.Find(resortId);
-                room.Name = resort.Name + " - " + roomName;
+                room.Name = roomName;
 
 
                 db.Rooms.Add(room);

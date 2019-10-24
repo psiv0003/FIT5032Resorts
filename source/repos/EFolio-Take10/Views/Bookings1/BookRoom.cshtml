@@ -21,15 +21,16 @@
                 @Html.EditorFor(model => model.BookingDateTime, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.BookingDateTime, "", new { @class = "text-danger" })
             </div>
-        </div>*@
+        </div>
 
     <div class="form-group">
         <p class="control-label col-md">Select Room</p>
         <div class="col-md-10 cent">
-            @Html.DropDownList("RoomID", null, htmlAttributes: new { @class = "form-control cent" })
+            @Html.EditorFor(model => model.CheckOutDate, new { htmlAttributes = new { @class = "form-control " } })
+            @Html.DropDownList("RoomID", null, htmlAttributes: new { @class = "form-control cent" })*
             @Html.ValidationMessageFor(model => model.Room.Price, "", new { @class = "text-danger" })
         </div>
-    </div>
+    </div>*@
 
   
 

@@ -27,6 +27,11 @@ namespace EFolio_Take10.Controllers
             return View(db.Resorts.ToList());
         }
 
+        //get resorts for ratings
+        public ActionResult Ratings()
+        {
+            return View(db.Resorts.ToList());
+        }
         // GET: Resorts/Details/5
         public ActionResult Details(int? id)
         {
