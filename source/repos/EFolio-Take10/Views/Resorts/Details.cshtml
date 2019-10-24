@@ -18,7 +18,17 @@
                 <p class="lead">A great starter layout for a landing page</p> -->
                 <div class="booking-box">
                     <div class="head">
-                        @Html.DisplayFor(model => model.Name)
+                        <h4 class="margin-25">
+                            @Html.DisplayFor(model => model.Name)
+
+                        </h4>
+
+                        @if (User.Identity.IsAuthenticated)
+                        {
+
+                            <button type="button" class="btn custom-btn cent"> @Html.ActionLink("Book Room", "BookRoom", "Bookings1")</button>
+
+                        }
                     </div>
 
 
@@ -30,7 +40,7 @@
 </header>
 
 <div class="container">
-    <button type="button" class="btn custom-btn cent"> @Html.ActionLink("Place Request", "BookRoom", "Bookings1")</button>
+  
 </div>
 
 @foreach (var room_details in Model.Rooms)
@@ -40,7 +50,8 @@
             <div class="card mb-3">
                 <div class="row no-gutters">
                     <div class="col-md-4">
-                        <img src="@Url.Content("~/RoomUpload/"+  room_details.ImgURL)" class="card-img" >
+                        <img src="@Url.Content("~/RoomUploads/"+ room_details.ImgURL)" style="height: 100%; " class="card-img" alt="Resort Image">
+
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">

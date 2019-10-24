@@ -1,71 +1,100 @@
 ﻿@model IEnumerable<EFolio_Take10.Models.Room>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Rooms";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
 
-<h2>Index</h2>
+<h2 class="heading">Rooms</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <button type="button" class="btn custom-btn cent btn-spacing margin-10">   @Html.ActionLink("Create New", "Create") </button>
+
+   
 </p>
 <table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AdultCapacity)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ChildCapacity)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ImgURL)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Price)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Resort.Name)
-        </th>
-        <th></th>
-    </tr>
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                Adult Capacity
+            </th>
+            <th>
+                Child Capacity
+            </th>
+            <th>
+               Image
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+               Resort Name
+            </th>
+            <th>
+               Status
+            </th>
+            <th></th>
+        </tr>
+    </thead>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AdultCapacity)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ChildCapacity)
-        </td>
-        <td>
-            <img class="img-thumbnail" src="@Url.Content("~/RoomUploads/"+ item.ImgURL)" />
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdultCapacity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ChildCapacity)
+            </td>
+            <td>
+                <img class="img-thumbnail" src="@Url.Content("~/RoomUploads/"+ item.ImgURL)" />
 
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Price)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Resort.Name)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Resort.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImgName)
+            </td>
+            <td class="custom-color">
+                <button type="button" class="btn custom-btn cent btn-spacing margin-10">   @Html.ActionLink("Edit", "Edit", new { id = item.Id }) </button>
+                <button type="button" class="btn custom-btn cent btn-spacing margin-10">    @Html.ActionLink("Details", "Details", new { id = item.Id }) </button>
+                @*<button type="button" class="btn custom-btn cent btn-spacing">   @Html.ActionLink("Delete", "Delete", new { id = item.Id }) </button>*@
 
+
+            </td>
+        </tr>
+        }
+    </tbody>
 </table>
+@section Scripts {
+    @Scripts.Render("~/Scripts/DataTables/jquery.dataTables.js")
+    @Scripts.Render("~/Scripts/DataTables/dataTables.bootstrap.js")
+    @Scripts.Render("~/Scripts/DataTables/dataTables.responsive.js")
+    <script>
+        $(document).ready(function () {
+            $('.table').DataTable({
+                responsive: true
+            });
+        });
+    </script>
+}
+<link href="~/Content/DataTables/css/dataTables.bootstrap.min.css"
+      rel="stylesheet" />
+<link href="~/Content/DataTables/css/responsive.dataTables.css" rel="stylesheet" />

@@ -142,16 +142,18 @@ namespace EFolio_Take10.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,BookingDateTime,RoomID,GuestID,CheckInDate,CheckOutDate,NoOfAdults,NoOfChildren,TotalCharge,Rating,Comment")] Booking booking)
+        public ActionResult Edit([Bind(Include = "Id,BookingDateTime,RoomID,GuestID,CheckInDate,CheckOutDate,NoOfAdults,NoOfChildren,TotalCharge,Rating,Comment")] Booking booking, int rating, String comment)
         {
             if (ModelState.IsValid)
             {
+                booking.Rating = rating;
+                booking.Comment = comment;
                 db.Entry(booking).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.GuestID = new SelectList(db.AspNetUsers, "Id", "Email", booking.GuestID);
-            ViewBag.RoomID = new SelectList(db.Rooms, "Id", "Name", booking.RoomID);
+            //ViewBag.GuestID = new SelectList(db.AspNetUsers, "Id", "Email", booking.GuestID);
+            //ViewBag.RoomID = new SelectList(db.Rooms, "Id", "Name", booking.RoomID);
             return View(booking);
         }
 

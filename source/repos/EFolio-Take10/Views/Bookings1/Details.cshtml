@@ -4,23 +4,24 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<link href="~/Content/Style.css" rel="stylesheet" />
 
-<h2>Details</h2>
+<h2 class="heading">Booking Details</h2>
 
 <div>
-    <h4>Booking</h4>
     <hr />
-    <dl class="dl-horizontal">
+    <dl class="dl-horizontal center-text ">
+
         <dt>
-            @Html.DisplayNameFor(model => model.BookingDateTime)
+            Room Name
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.BookingDateTime)
+            @Html.DisplayFor(model => model.Room.Name)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CheckInDate)
+            Check In Date
         </dt>
 
         <dd>
@@ -28,15 +29,21 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CheckOutDate)
+            Check Out Date
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.CheckOutDate)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.NoOfAdults)
+            Total Charge
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalCharge)
+        </dd>
+        <dt>
+            Total Adults
         </dt>
 
         <dd>
@@ -44,7 +51,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.NoOfChildren)
+            Total Children
         </dt>
 
         <dd>
@@ -52,48 +59,39 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.TotalCharge)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TotalCharge)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.Rating)
         </dt>
+        @if (Model.Rating == null)
+        {
+            <button type="button" class="btn custom-btn cent btn-spacing"> @Html.ActionLink("Add Rating", "Edit", new { id = Model.Id })</button>
 
-        <dd>
-            @Html.DisplayFor(model => model.Rating)
-        </dd>
+        }
+        else
+        {
+            <dd>
+                @Html.DisplayFor(model => model.Rating)
+            </dd>
+
+        }
 
         <dt>
             @Html.DisplayNameFor(model => model.Comment)
         </dt>
+        @if (Model.Comment == null)
+        {
+            <button type="button" class="btn custom-btn cent btn-spacing"> @Html.ActionLink("Add Review", "Edit", new { id = Model.Id })</button>
 
-        <dd>
-            @Html.DisplayFor(model => model.Comment)
-        </dd>
+        }
+        else
+        {
+            <dd>
+                @Html.DisplayFor(model => model.Comment)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.AspNetUser.Email)
-        </dt>
+        }
 
-        <dd>
-            @Html.DisplayFor(model => model.AspNetUser.Email)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Room.Name)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Room.Name)
-        </dd>
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

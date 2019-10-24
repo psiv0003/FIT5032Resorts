@@ -63,3 +63,36 @@
     .custom-btn:hover {
         color: white;
     }
+
+.margin-25{
+    margin: 25px;
+}
+
+.heading {
+    margin: 25px;
+    text-align: center;
+
+}
+
+.cust-red {
+    color: #863C3C!important;
+    font-weight: bold;
+}
+
+.width-100 {
+width: 100%;
+}
+
+
+.center-text {
+text-align: center;
+}
+
+.btn-spacing {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.no-display{
+    display: none;
+}

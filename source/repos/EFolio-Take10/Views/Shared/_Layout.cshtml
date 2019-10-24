@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Relic Resorts</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -19,6 +19,7 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <link href="~/Content/Site.css" rel="stylesheet" />
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark nav-bg static-top">
@@ -38,21 +39,22 @@
                     </li>
 
                     <li class="nav-item">
-                        <a href="#">@Html.ActionLink("Our Story", "About", "Home")</a>
+                        @*<a href="#">@Html.ActionLink("Our Story", "About", "Home")</a>*@
                     </li>
                     @*<li class="nav-item">
             <a href="#">@Html.ActionLink("Discover", "Resorts", "Home")</a>
         </li>*@
-                    @if (User.Identity.IsAuthenticated)
+                    @if (User.Identity.IsAuthenticated )
                     {
-                        <li class="nav-item">
-                            <a href="#">@Html.ActionLink("Locations", "Index", "Resorts")</a>
-                        </li>
+
                         <li class="nav-item">
                             <a href="#">@Html.ActionLink("Your Bookings", "Index", "Bookings1")</a>
                         </li>
                     }
 
+                    <li class="nav-item">
+                        <a href="#">@Html.ActionLink("Locations", "Index", "Resorts")</a>
+                    </li>
                     <li class="nav-item">
                         <a href="#">@Html.ActionLink("Contact", "Contact", "Home")</a>
                     </li>
@@ -60,7 +62,7 @@
                     @if (this.User.IsInRole("Admin"))
                     {
                         <li class="nav-item">
-                            <a href="#">@Html.ActionLink("Admin", "Admin", "Home")</a>
+                            <a href="#">@Html.ActionLink("Admin", "AdminIndex", "Resorts")</a>
                         </li>
                     }
 
@@ -74,8 +76,19 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        <footer class="footer">
+            <ul class="navbar-nav ml-auto">
+                <h6>Relic Resorts &copy; @DateTime.Now.Year </h6>
+                <li class="nav-item">
+                    <a href="#">@Html.ActionLink("Home", "Home", "Home")</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#">@Html.ActionLink("Locations", "Index", "Resorts")</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#">@Html.ActionLink("Contact", "Contact", "Home")</a>
+                </li>
+                </ul>
         </footer>
     </div>
 

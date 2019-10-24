@@ -1,5 +1,7 @@
 ﻿@model  EFolio_Take10.Models.EmailSender
 
+
+
 @{
     ViewBag.Title = "Send_Email";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
@@ -16,14 +18,41 @@
         <div class="alert alert-info">@ViewBag.Result</div>
     }
 
+
     <div class="form-horizontal">
         <h4>Send Email To Users</h4>
+
+
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <select id="mySkills" multiple="multiple" required name="mySkillsName" class="list">
+                    @if (ViewBag.mySkills != null)
+                    {
+                        foreach (var item in ViewBag.mySkills)
+                        {
+                            if (item.Text != null)
+                            {
+                                <option value="@item.Value">
+                                    @item.Text
+                                </option>
+                            }
+                        }
+                    }
+                </select>
+            </div>
+            <div class="col-md-2">
+                <button type="button" class="btn custom-btn cent addToList" id="addToList">Add To List</button>
+
+            </div>
+        </div>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.ToEmail, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ToEmail, new { htmlAttributes = new { @class = "form-control" } })
+                <textarea class="form-control emailList" id="emailList"></textarea>
+                @*@Html.EditorFor(model => model.ToEmail, new { htmlAttributes = new { @class = "form-control emailList", @id="emailList" } })*@
                 @Html.ValidationMessageFor(model => model.ToEmail, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -69,4 +98,35 @@
             selector: '#myTextArea'
         });
     </script>
+
+    <script>
+        $(document).ready(function () {
+            $(".addToList").click(function () {
+                var countries = [];
+                $.each($(".list option:selected"), function () {
+                    countries.push($(this).val());
+                });
+                $("#emailList").val(countries);
+
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(function () {
+                $('#mySkills').multiselect({
+                    includeSelectAllOption: true
+                });
+            });
+            $("#addToList").click(function () {
+                var countries = [];
+                $.each($(".list option:selected"), function () {
+                    countries.push($(this).val());
+                });
+                $("#emailList").val(countries);
+            });
+        });
+    </script>
+
 }

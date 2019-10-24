@@ -21,7 +21,7 @@
 input,
 select,
 textarea {
-    max-width: 280px;
+    /*max-width: 280px;*/
 }
 
 
@@ -30,13 +30,27 @@ textarea {
 }
 
 a {
-    color: white !important;
+    color: white;
 }
 
+    a:hover {
+        color: white;
+    }
 .custom-color {
-    color: white;
+    color: white!important;
 }
 
 .nav-item {
     margin-right: 20px;
+}
+
+.footer {
+    background: #863C3C;
+    color: white;
+    padding: 30px;
+    text-align: center;
+}
+
+.margin-10 {
+    margin-bottom: 10px;
 }

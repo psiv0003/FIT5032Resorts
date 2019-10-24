@@ -29,7 +29,7 @@ for (i = 0; i < locations.length; i++) {
         "type": "Feature",
         "properties": {
             "description": locations[i].description,
-            "icon": "circle-15"
+            "icon": "lodging-15"
         },
         "geometry": {
             "type": "Point",
@@ -38,13 +38,47 @@ for (i = 0; i < locations.length; i++) {
     };
     data.push(feature)
 }
+function forwardGeocoder(query) {
+    var matchingFeatures = [];
+    for (var i = 0; i < data.length; i++) {
+        var feature = data[i];
+        // handle queries with different capitalization than the source data by calling toLowerCase()
+        if (feature.properties.description.toLowerCase().search(query.toLowerCase()) !== -1) {
+            // add a tree emoji as a prefix for custom data results
+            // using carmen geojson format: https://github.com/mapbox/carmen/blob/master/carmen-geojson.md
+            feature['place_name'] =  feature.properties.description;
+            feature['center'] = feature.geometry.coordinates;
+            feature['place_type'] = ['lodging'];
+            matchingFeatures.push(feature);
+        }
+    }
+    return matchingFeatures;
+}
 mapboxgl.accessToken = TOKEN;
 var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v10',
     zoom: 11,
+    marker: true,
     center: [locations[0].longitude, locations[0].latitude]
 });
+map.addControl(new MapboxGeocoder({
+    accessToken: mapboxgl.accessToken,
+    localGeocoder: forwardGeocoder,
+    zoom: 14,
+    placeholder: "Enter search",
+    mapboxgl: mapboxgl
+}));
+
+// Add geolocate control to the map.
+map.addControl(new mapboxgl.GeolocateControl({
+    positionOptions: {
+        enableHighAccuracy: true
+    },
+    trackUserLocation: true
+}));
+
+
 map.on('load', function () {
     // Add a layer showing the places.
     map.addLayer({
@@ -63,9 +97,9 @@ map.on('load', function () {
         }
     });
 
-    map.addControl(new MapboxGeocoder({
-        accessToken: mapboxgl.accessToken
-    }));;
+    //map.addControl(new MapboxGeocoder({
+    //    accessToken: mapboxgl.accessToken
+    //}));;
     map.addControl(new mapboxgl.NavigationControl());
     // When a click event occurs on a feature in the places layer, open a popup at the
     // location of the feature, with description HTML from its properties.

@@ -16,18 +16,28 @@ namespace EFolio_Take10.Utils
         public void Send(String toEmail, String subject, String contents, HttpPostedFileBase emailAttachment)
         {
             var client = new SendGridClient(API_KEY);
-            var from = new EmailAddress("noreply@localhost.com", "FIT5032 Email User");
+            var from = new EmailAddress("noreply@relic.com", "Relic Resorts");
+            String[] emailList = toEmail.Split(','); 
+            List<EmailAddress> toList = new List<EmailAddress>();
+            for (int i = 0; i < emailList.Length; i++)
+            {
+                toList.Add(new EmailAddress(emailList[i], ""));
+            }
             var to = new EmailAddress(toEmail, "");
             var plainTextContent = contents;
             var htmlContent = "<p>" + contents + "</p>";
-            var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
-            byte[] fileInBytes = new byte[emailAttachment.ContentLength];
-            using (BinaryReader theReader = new BinaryReader(emailAttachment.InputStream))
+         
+            var msg = MailHelper.CreateSingleEmailToMultipleRecipients(from, toList, subject, plainTextContent, htmlContent);
+            if (emailAttachment != null)
             {
-                fileInBytes = theReader.ReadBytes(emailAttachment.ContentLength);
+                byte[] fileInBytes = new byte[emailAttachment.ContentLength];
+                using (BinaryReader theReader = new BinaryReader(emailAttachment.InputStream))
+                {
+                    fileInBytes = theReader.ReadBytes(emailAttachment.ContentLength);
+                }
+                string fileAsString = Convert.ToBase64String(fileInBytes);
+                msg.AddAttachment(emailAttachment.FileName, fileAsString);
             }
-            string fileAsString = Convert.ToBase64String(fileInBytes);
-            msg.AddAttachment(emailAttachment.FileName, fileAsString);
             var response = client.SendEmailAsync(msg);
         }
 

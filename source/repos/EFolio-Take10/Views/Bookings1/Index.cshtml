@@ -7,21 +7,38 @@
 
 <link href="~/Content/Style.css" rel="stylesheet" />
 
-<h2>Your Bookings</h2>
+<h2 class="heading">Your Bookings</h2>
 
 @foreach (var item in Model)
 {
     <div class="row r-content">
 
-        <div class="card mb-3 coordinates">
+        <div class="card width-100">
             <div class="row no-gutters">
-              
+                <div class="col-md-4">
+                    <img src="@Url.Content("~/RoomUploads/"+ item.Room.ImgURL)" style="height: 100%; " class="card-img" alt="Resort Image">
+                </div>
                 <div class="col-md-8">
                     <div class="card-body">
                         <h5 class="card-title description"> @Html.DisplayFor(modelItem => item.Room.Resort.Name)</h5>
+                        <p class="card-text"><small class="text-muted"> @Html.DisplayFor(modelItem => item.Room.Name)  </small></p>
+
                         <p class="card-text"> @Html.DisplayFor(modelItem => item.Room.Resort.Address)</p>
-                        <p class="card-text"><small class="text-muted"> @Html.DisplayFor(modelItem => item.CheckInDate) to @Html.DisplayFor(modelItem => item.CheckOutDate) </small></p>
-                        <p class="card-text"><small class="text-muted"> @Html.DisplayFor(modelItem => item)  </small></p>
+                        <p class="card-text"><small class="text-muted"> Dates - @Html.DisplayFor(modelItem => item.CheckInDate) to @Html.DisplayFor(modelItem => item.CheckOutDate) </small></p>
+
+                        <p class="card-text"><small class="text-muted">Booking Reference -  @Html.DisplayFor(modelItem => item.Id)  </small></p>
+                        <p class="card-text"><small class="text-muted">Total Charge -  AUD$ @Html.DisplayFor(modelItem => item.TotalCharge)  </small></p>
+
+                        @if (item.status == 0 || item.status == null)
+                        {
+                            <p class="card-text"><small class="cust-red">Booking Status -  Unconfirmed </small></p>
+
+                        }
+                        else if (item.status != 0)
+                        {
+                            <p class="card-text"><small class="cust-red">Booking Status -  Confirmed  </small></p>
+
+                        }
 
                         <button type="button" class="btn custom-btn cent"> @Html.ActionLink("View", "Details", new { id = item.Id })</button>
 
@@ -32,80 +49,3 @@
 
     </div>
 }
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.BookingDateTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CheckInDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CheckOutDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NoOfAdults)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NoOfChildren)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TotalCharge)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Rating)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Comment)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AspNetUser.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Room.Name)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.BookingDateTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CheckInDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CheckOutDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NoOfAdults)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NoOfChildren)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TotalCharge)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Rating)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Comment)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AspNetUser.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Room.Name)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            </td>
-        </tr>
-    }
-
-</table>

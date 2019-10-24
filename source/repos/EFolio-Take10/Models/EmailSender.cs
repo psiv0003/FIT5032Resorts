@@ -9,9 +9,8 @@ namespace EFolio_Take10.Models
 {
     public class EmailSender
     {
-        [Display(Name = "Email address")]
-        [Required(ErrorMessage = "Please enter an email address.")]
-        [EmailAddress(ErrorMessage = "Invalid Email Address")]
+        //[Display(Name = "Email address")]
+        //[Required(ErrorMessage = "Please enter an email address.")]
         public string ToEmail { get; set; }
 
         [Required(ErrorMessage = "Please enter a subject.")]
@@ -22,5 +21,9 @@ namespace EFolio_Take10.Models
         public string Contents { get; set; }
 
         public HttpPostedFileBase Upload { get; set; }
+        public List<string> SelectedEmails { get; set; }
+        public MultiSelectList DropDownList { get; set; }
     }
+
+   
 }

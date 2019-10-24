@@ -99,7 +99,7 @@ namespace EFolio_Take10.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Description,AdultCapacity,ChildCapacity,ImgURL,Price,ResortID")] Room room)
+        public ActionResult Edit([Bind(Include = "Id,Name,Description,AdultCapacity,ChildCapacity,ImgURL,ImgName,Price,ResortID")] Room room)
         {
            
 

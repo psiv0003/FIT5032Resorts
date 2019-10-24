@@ -53,7 +53,7 @@ namespace EFolio_Take10.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description,Address,ImgURL,Rating,ResortLat,ResortLong")] Resort resort, HttpPostedFileBase
+        public ActionResult Create([Bind(Include = "Id,Name,Description,Address,ImgURL,ImgName,Rating,ResortLat,ResortLong")] Resort resort, HttpPostedFileBase
 postedFile)
         {
             ModelState.Clear();
@@ -71,7 +71,7 @@ postedFile)
 
                 db.Resorts.Add(resort);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("AdminIndex");
             }
 
             return View(resort);
@@ -97,13 +97,13 @@ postedFile)
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Description,Address,ImgURL,Rating,ResortLat,ResortLong")] Resort resort)
+        public ActionResult Edit([Bind(Include = "Id,Name,Description,Address,ImgURL,ImgName,Rating,ResortLat,ResortLong")] Resort resort)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(resort).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("AdminIndex");
             }
             return View(resort);
         }
