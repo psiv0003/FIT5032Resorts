@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using EFolio_Take10.Models;
 using Microsoft.AspNet.Identity;
+using Newtonsoft.Json;
+using static EFolio_Take10.Models.ChartModel;
 
 namespace EFolio_Take10.Controllers
 {
@@ -31,6 +33,42 @@ namespace EFolio_Take10.Controllers
            
 
             //   var bookings = db.Bookings.Include(b => b.AspNetUser).Include(b => b.Room);
+            return View(db.Bookings);
+        }
+
+        public ActionResult Charts()
+        {
+
+
+           
+
+            var bookings = db.Bookings;
+            List<string> roomNamesArray = new List<string>();
+            foreach (Booking book in bookings) {
+                
+                var Room = book.Room.Name;
+                roomNamesArray.Add(Room);
+            }
+
+            var res = db.Bookings
+                .GroupBy(l => (l.Room.Resort.Name))
+                .Select(g => new
+                {
+                    Name = g.Key,
+                    Count = g.Select(l => (l.Room.Resort.Name)).Distinct().Count()
+                }
+                );
+
+
+            List<DataPoint> dataPoints = new List<DataPoint>();
+
+            foreach (var v in res) {
+                string name = v.Name;
+                dataPoints.Add(new DataPoint(name, v.Count));
+            }
+           
+
+            ViewBag.DataPoints = JsonConvert.SerializeObject(dataPoints);
             return View(db.Bookings);
         }
 

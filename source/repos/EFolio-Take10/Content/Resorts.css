@@ -103,3 +103,13 @@ a {
     width: 100% !important;
 
 }
+
+.modal-body {
+    background: #863C3C;
+    color: white;
+    text-align: center;
+}
+
+.modal-header {
+text-align: center;
+}

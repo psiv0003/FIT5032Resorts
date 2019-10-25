@@ -245,6 +245,7 @@
     <Compile Include="Models\Booking.cs">
       <DependentUpon>ResortModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ChartModel.cs" />
     <Compile Include="Models\EmailSender.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -842,6 +843,7 @@
     <Content Include="Views\Resorts\Ratings.cshtml" />
     <Content Include="Views\Rooms\Ratings.cshtml" />
     <Content Include="Views\Bookings1\Ratings.cshtml" />
+    <Content Include="Views\Bookings1\Charts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

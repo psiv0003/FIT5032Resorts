@@ -30,7 +30,7 @@ namespace EFolio_Take10.Controllers
         {
 
 
-            //var users = db.AspNetUsers.ToList();
+            // var users = db.AspNetUsers.ToList();
             //List<AspNetUser> userList = users.ToList();
             //List<IEnumerable> list = new List<IEnumerable>();
             //foreach (AspNetUser i in userList)
@@ -55,9 +55,9 @@ namespace EFolio_Take10.Controllers
                 ViewBag.mySkills = result.Select(N => new SelectListItem { Text = N.Email, Value = N.Email.ToString() });
             }
 
-          //  ViewBag.data = new AspNetUser().Email();
-
-            return View();
+            //  ViewBag.data = new AspNetUser().Email();
+            return View(new EmailSender());
+           // return View();
         }
         public ActionResult Index()
         {
@@ -97,7 +97,12 @@ namespace EFolio_Take10.Controllers
 
                     ModelState.Clear();
 
-                    return View();
+                    var result = db.AspNetUsers.ToList();
+                    if (result != null)
+                    {
+                        ViewBag.mySkills = result.Select(N => new SelectListItem { Text = N.Email, Value = N.Email.ToString() });
+                    }
+                    return View(new EmailSender());
                 }
                 catch
                 {

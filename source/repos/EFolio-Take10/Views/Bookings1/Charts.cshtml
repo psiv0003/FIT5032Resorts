@@ -1,0 +1,33 @@
+﻿@model IEnumerable<EFolio_Take10.Models.Booking>
+
+@{
+    ViewBag.Title = "Charts";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<h2>Charts</h2>
+<div id="chartContainer" style="height: 370px; width: 100%;"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+
+<script>
+window.onload = function () {
+
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	theme: "light2", // "light1", "light2", "dark1", "dark2"
+	title: {
+		text: "Number of Employees under Each Manager"
+	},
+	axisY: {
+		title: "No. of Employees"
+	},
+	data: [{
+		type: "column",
+		dataPoints: @Html.Raw(ViewBag.DataPoints)
+	}]
+});
+chart.render();
+
+}
+</script>
